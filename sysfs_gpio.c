@@ -159,16 +159,16 @@ int rtapi_app_main(void) {
 	}
       }
 
-      retval = hal_pin_bit_newf(HAL_OUT, &(current->value), comp_id, "sysfs_gpio.p%d", pin);
+      retval = hal_pin_bit_newf(HAL_OUT, &(current->value), comp_id, "sysfs_gpio.p%d-in", pin);
       if(retval < 0) {
-	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d", modname, pin);
+	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d-in", modname, pin);
 	hal_exit(comp_id);
 	return -1;
       }
 
-      retval = hal_pin_bit_newf(HAL_IN, &(current->invert), comp_id, "sysfs_gpio.p%d.invert", pin);
+      retval = hal_pin_bit_newf(HAL_IN, &(current->invert), comp_id, "sysfs_gpio.p%d-in.invert", pin);
       if(retval < 0) {
-	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d.invert", modname, pin);
+	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d-in.invert", modname, pin);
 	hal_exit(comp_id);
 	return -1;
       }
@@ -233,16 +233,16 @@ int rtapi_app_main(void) {
 	}
       }
 
-      retval = hal_pin_bit_newf(HAL_IN, &(current->value), comp_id, "sysfs_gpio.p%d", pin);
+      retval = hal_pin_bit_newf(HAL_IN, &(current->value), comp_id, "sysfs_gpio.p%d-out", pin);
       if(retval < 0) {
-	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d", modname, pin);
+	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d-out", modname, pin);
 	hal_exit(comp_id);
 	return -1;
       }
 
-      retval = hal_pin_bit_newf(HAL_IN, &(current->invert), comp_id, "sysfs_gpio.p%d.invert", pin);
+      retval = hal_pin_bit_newf(HAL_IN, &(current->invert), comp_id, "sysfs_gpio.p%d-out.invert", pin);
       if(retval < 0) {
-	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d.invert", modname, pin);
+	rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: could not create pin sysfs_gpio.p%d-out.invert", modname, pin);
 	hal_exit(comp_id);
 	return -1;
       }
