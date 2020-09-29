@@ -58,10 +58,9 @@ static void read_input_pins(void *arg, long period) {
   char value_str[MAX_VALUE_LENGTH];
   sysfs_pin_t *current = input_pin_root;
   while(current != NULL) {
-    if(read(current->fd, value_str, 1) == -1) {
+    if(pread(current->fd, value_str, 1, 0) == -1) {
       rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: failed to read pin %d\n", modname, current->pin);
     }
-    lseek(current->fd, 0, SEEK_SET);
     int value = value_str[0] != '0';
     *(current->value) = value ^ *(current->invert);
     current = current->next;
@@ -73,10 +72,9 @@ static void write_output_pins(void *arg, long period) {
   sysfs_pin_t *current = output_pin_root;
   while(current != NULL) {
     value_str[0] = (*(current->value) ^ *(current->invert)) ? '1' : '0';
-    if(write(current->fd, value_str, 1) == -1) {
+    if(pwrite(current->fd, value_str, 1, 0) == -1) {
       rtapi_print_msg(RTAPI_MSG_ERR, "%s: ERROR: failed to write pin %d\n", modname, current->pin);
     }
-    lseek(current->fd, 0, SEEK_SET);
     current = current->next;
   }
 }
